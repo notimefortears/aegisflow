@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 262 83% 58%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-background text-text-primary;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111111;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-lg;
+  }
+
+  .card-hover {
+    @apply card transition-colors duration-150 hover:border-border-2 hover:bg-surface-2;
+  }
+
+  .input-base {
+    @apply w-full bg-surface-2 border border-border rounded-md px-3 py-2 text-sm text-text-primary
+           placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary
+           transition-colors duration-150;
+  }
+
+  .label-base {
+    @apply block text-xs font-medium text-text-secondary mb-1;
+  }
+
+  .node-handle {
+    @apply w-3 h-3 rounded-full border-2 bg-background transition-all duration-150;
+  }
+}
+
+/* React Flow overrides */
+.react-flow__renderer {
+  background: #0a0a0a;
+}
+
+.react-flow__background {
+  background: #0a0a0a;
+}
+
+.react-flow__edge-path {
+  stroke: #2a2a2a;
+  stroke-width: 2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #7c3aed;
+}
+
+.react-flow__edge.executing .react-flow__edge-path {
+  stroke: #10b981;
+  stroke-width: 2.5;
+}
+
+.react-flow__edge.failed .react-flow__edge-path {
+  stroke: #ef4444;
+}
+
+.react-flow__controls {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.react-flow__controls-button {
+  background: #111111;
+  border: none;
+  border-bottom: 1px solid #2a2a2a;
+  fill: #a1a1aa;
+  color: #a1a1aa;
+  width: 32px;
+  height: 32px;
+}
+
+.react-flow__controls-button:hover {
+  background: #1a1a1a;
+  fill: #f4f4f5;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.react-flow__minimap {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(124, 58, 237, 0.1);
+}
+
+.react-flow__panel {
+  margin: 12px;
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+/* Node status ring animation */
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 0 currentColor; }
+  50% { box-shadow: 0 0 0 4px transparent; }
+}
+
+.node-running {
+  animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+/* Execution timeline */
+.timeline-line {
+  @apply absolute left-[23px] top-8 bottom-0 w-px bg-border;
+}

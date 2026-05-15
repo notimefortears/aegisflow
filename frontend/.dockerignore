@@ -1,0 +1,36 @@
+# ── Never copy into Docker build context ─────────────────────────────────────
+
+# Dependencies — npm ci inside the image installs these fresh
+node_modules/
+
+# Previous build output
+dist/
+build/
+.vite/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# OS and editor noise
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Git metadata
+.git/
+.gitignore
+
+# CI
+.github/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test output
+coverage/

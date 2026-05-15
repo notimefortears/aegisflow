@@ -1,0 +1,54 @@
+# ── Never copy into Docker build context ─────────────────────────────────────
+
+# Virtual environments (the builder stage creates its own)
+.venv/
+venv/
+env/
+
+# Test artefacts
+.pytest_cache/
+.coverage
+htmlcov/
+tests/
+coverage.xml
+
+# Type checking caches
+.mypy_cache/
+.pytype/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Bytecode (rebuilt inside the image anyway)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Secrets and config that must come from runtime env, not baked into the image
+.env
+.env.*
+!.env.example
+
+# Alembic env (only keep the versions + ini)
+# alembic/ is included so migrations run; exclude only dev scripts if any
+
+# OS and editor noise
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Git metadata
+.git/
+.gitignore
+
+# Logs
+*.log
+logs/
+
+# CI
+.github/

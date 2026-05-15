@@ -1,0 +1,57 @@
+version: "3.9"
+
+# Development overrides — use with:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# Changes vs production:
+#   - postgres + redis ports exposed to host for direct tool access
+#   - backend: bind-mounted source with hot-reload via uvicorn --reload
+#   - frontend: bind-mounted source running Vite dev server on port 5173
+#   - nginx is NOT started in dev (Vite dev server proxies /api to backend)
+
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./backend:/app
+    environment:
+      ENVIRONMENT: development
+      DEBUG: "true"
+
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: builder
+    command: npm run dev -- --host 0.0.0.0
+    volumes:
+      - ./frontend:/app
+      # Prevent host node_modules from shadowing the container's
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+
+  # Nginx is intentionally omitted in dev — Vite dev server handles proxying
+  nginx:
+    profiles:
+      - donotstart
