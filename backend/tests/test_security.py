@@ -1,5 +1,5 @@
 """
-Tests for SecurityEngine, AI nodes, and security workflow nodes.
+Tests for SecurityEngine, provider nodes, and security workflow nodes.
 
 Run with: ``pytest backend/tests/test_security.py``
 """

@@ -74,7 +74,7 @@ async def _ensure_initial_admin() -> None:
 
 app = FastAPI(
     title="AegisFlow",
-    description="AI Workflow Automation with Built-in Security",
+    description="Workflow Automation with Built-in Security",
     version="1.0.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",

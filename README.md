@@ -1,13 +1,6 @@
-```
- █████╗ ███████╗ ██████╗ ██╗███████╗███████╗██╗      ██████╗ ██╗    ██╗
-██╔══██╗██╔════╝██╔════╝ ██║██╔════╝██╔════╝██║     ██╔═══██╗██║    ██║
-███████║█████╗  ██║  ███╗██║███████╗█████╗  ██║     ██║   ██║██║ █╗ ██║
-██╔══██║██╔══╝  ██║   ██║██║╚════██║██╔══╝  ██║     ██║   ██║██║███╗██║
-██║  ██║███████╗╚██████╔╝██║███████║██║     ███████╗╚██████╔╝╚███╔███╔╝
-╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝╚══════╝╚═╝     ╚══════╝ ╚═════╝  ╚══╝╚══╝
-```
+# AegisFlow
 
-**Open-source AI workflow automation with built-in security**
+**Self-hosted workflow automation with built-in security**
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://fastapi.tiangolo.com)
@@ -17,23 +10,11 @@
 
 ---
 
-## Screenshots
+## Overview
 
-> [Screenshot coming soon]
+AegisFlow combines a visual workflow editor with execution tracking, credential storage, role-based access, and security checks. Workflows can call external providers, receive webhooks, transform data, and pause for human approval.
 
----
-
-## Why AegisFlow?
-
-You need AI workflow automation. So you look at n8n. Or Zapier. Or Make.com. They are all excellent tools — but they weren't designed with enterprise security as a first-class concern.
-
-You send customer data through their cloud. You cannot audit exactly what prompt was sent to GPT-4. You have no way to detect when a malicious webhook payload attempts to hijack your AI node. You cannot pause a workflow and ask a human "are you sure?" before the model sends that email or executes that query.
-
-**AegisFlow is workflow automation where security is not a plugin — it is the foundation.**
-
-Every AI call passes through a PII detection layer. Every prompt is scored for injection risk before it reaches the model. Every execution, approval, and security event is written to an immutable audit trail. And because it is fully self-hosted, your data never leaves your infrastructure.
-
----
+Provider inputs can be scanned for sensitive information and prompt injection before dispatch. External providers receive the inputs sent to them; workflow state and audit records are stored in your deployment.
 
 ## Key Features
 
@@ -60,7 +41,7 @@ Drag-and-drop canvas powered by React Flow. Connect nodes, configure them inline
 | **Sub-workflow** | Invoke another workflow as a reusable step |
 
 ### Built-in PII Detection
-Every AI node call is automatically scanned before the prompt is dispatched. Detected PII (names, emails, SSNs, credit card numbers, etc.) is handled according to your policy:
+Every automated node call is automatically scanned before the prompt is dispatched. Detected PII (names, emails, SSNs, credit card numbers, etc.) is handled according to your policy:
 
 - **Block** — reject the step and fail the execution
 - **Redact** — replace detected entities with tokens before sending, restore in output
@@ -69,10 +50,10 @@ Every AI node call is automatically scanned before the prompt is dispatched. Det
 Configurable per-workflow or globally via `MAX_PII_RISK_SCORE`.
 
 ### Prompt Injection Protection
-A pattern + heuristic scoring engine evaluates every text input that flows into an AI node. Scores above `MAX_INJECTION_RISK_SCORE` are blocked, logged, and surfaced in the audit trail. Common attack vectors (role override, instruction leakage, jailbreak templates) are detected out of the box; you can add custom rules.
+A pattern + heuristic scoring engine evaluates every text input that flows into an automated node. Scores above `MAX_INJECTION_RISK_SCORE` are blocked, logged, and surfaced in the audit trail. Common attack vectors (role override, instruction leakage, jailbreak templates) are detected out of the box; you can add custom rules.
 
 ### Human-in-the-Loop Gates
-Insert a **Human Gate** node anywhere in a workflow. Execution pauses, the assigned reviewer receives a notification, and they approve or reject via the web UI. The full decision — who, when, what they saw — is recorded. Ideal before irreversible actions: sending bulk email, writing to a production database, or executing AI-generated code.
+Insert a **Human Gate** node anywhere in a workflow. Execution pauses, the assigned reviewer receives a notification, and they approve or reject via the web UI. The full decision — who, when, what they saw — is recorded. Ideal before irreversible actions: sending bulk email, writing to a production database, or executing generated code.
 
 ### Credential Vault
 API keys and secrets are encrypted with AES-256 (Fernet) before being written to the database. They are never returned in API responses. Nodes reference credentials by name; the runtime resolves them at execution time only.
@@ -91,7 +72,7 @@ Four built-in roles:
 Every execution step, security event, human decision, and credential access is appended to an append-only audit log table. Configurable retention (`AUDIT_RETENTION_DAYS`). Export to JSON or stream to your SIEM.
 
 ### Real-time Execution View
-WebSocket-powered live execution panel. Watch nodes light up as they run, see intermediate outputs, and stream AI responses character-by-character.
+WebSocket-powered live execution panel. Watch nodes light up as they run, see intermediate outputs, and stream automated responses character-by-character.
 
 ### Fully Self-hosted
 One `docker compose up` and you are running. Postgres, Redis, Celery workers, and the web UI are all included. No external services required for core functionality.
@@ -107,11 +88,11 @@ cd aegisflow
 # Copy and configure environment
 cp .env.example .env
 
-# Required: set these three values in .env
-#   SECRET_KEY              — random 64-char hex string
-#   CREDENTIAL_ENCRYPTION_KEY — 32-byte URL-safe base64 Fernet key
-#   INITIAL_ADMIN_PASSWORD  — your first admin password
-#   POSTGRES_PASSWORD       — postgres database password
+## Required: set these three values in .env
+## SECRET_KEY              — random 64-char hex string
+## CREDENTIAL_ENCRYPTION_KEY — 32-byte URL-safe base64 Fernet key
+## INITIAL_ADMIN_PASSWORD  — your first admin password
+## POSTGRES_PASSWORD       — postgres database password
 
 make prod
 ```
@@ -157,7 +138,7 @@ Open [http://localhost](http://localhost) and log in with `admin@example.com` an
               │                         │
    ┌──────────▼──────┐       ┌──────────▼──────┐
    │  Claude (Anthropic)│    │  OpenAI / Other  │
-   │  AI Node          │    │  AI Node         │
+   │  automated Node          │    │  automated Node         │
    └───────────────────┘    └──────────────────┘
 ```
 
@@ -166,7 +147,7 @@ Open [http://localhost](http://localhost) and log in with `admin@example.com` an
 ## Security Model
 
 ### PII Detection
-AegisFlow embeds a multi-strategy PII scanner that runs before every AI call:
+AegisFlow embeds a multi-strategy PII scanner that runs before every automated call:
 
 - **Regex patterns**: SSN, credit cards, email addresses, phone numbers
 - **Entity recognition**: names, addresses, dates of birth (rule-based NER)
@@ -203,16 +184,16 @@ The audit log is append-only at the application level. Every record includes:
 ## Development Setup
 
 ```bash
-# Start postgres, redis, hot-reload backend, and Vite dev server
+## Start postgres, redis, hot-reload backend, and Vite dev server
 make dev
 
-# In another terminal — run the test suite
+## In another terminal — run the test suite
 make test
 
-# Lint and type check
+## Lint and type check
 make lint
 
-# Auto-format
+## Auto-format
 make format
 ```
 
@@ -274,4 +255,4 @@ With the stack running, interactive API docs are available at:
 
 MIT License — see [LICENSE](./LICENSE).
 
-Built with care by [notimefortears](https://github.com/notimefortears) and contributors.
+Built with care by [notimefortears](https://github.com/notimefortears).

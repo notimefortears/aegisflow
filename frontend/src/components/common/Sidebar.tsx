@@ -57,7 +57,7 @@ export default function Sidebar() {
         {sidebarExpanded && (
           <div className="flex flex-col min-w-0">
             <span className="text-sm font-semibold text-text-primary leading-tight">AegisFlow</span>
-            <span className="text-[10px] text-text-muted leading-tight">AI Automation</span>
+            <span className="text-[10px] text-text-muted leading-tight">Automation</span>
           </div>
         )}
       </div>

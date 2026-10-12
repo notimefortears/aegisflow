@@ -72,7 +72,7 @@ export const NODE_CATALOG: NodeMeta[] = [
   { type: 'webhook', label: 'Webhook', category: 'trigger', description: 'Trigger on HTTP request' },
   { type: 'schedule', label: 'Schedule', category: 'trigger', description: 'Run on a cron schedule' },
   { type: 'manual', label: 'Manual', category: 'trigger', description: 'Triggered manually or via API' },
-  // AI
+  // Providers
   { type: 'claude', label: 'Claude', category: 'ai', description: 'Anthropic Claude model call' },
   { type: 'openai', label: 'OpenAI', category: 'ai', description: 'OpenAI GPT model call' },
   // Security

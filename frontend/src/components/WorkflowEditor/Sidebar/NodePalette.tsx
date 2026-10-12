@@ -5,7 +5,7 @@ import type { NodeMeta } from '../utils';
 const CATEGORY_ORDER: NodeCategory[] = ['trigger', 'ai', 'security', 'integration', 'logic'];
 const CATEGORY_LABELS: Record<NodeCategory, string> = {
   trigger: 'Triggers',
-  ai: 'AI',
+  ai: 'Providers',
   security: 'Security',
   integration: 'Integrations',
   logic: 'Logic',

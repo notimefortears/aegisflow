@@ -1,8 +1,8 @@
 """
 SecurityEngine — core security layer for AegisFlow.
 
-Runs before/after every AI call and is used as standalone workflow nodes.
-All detection is regex + heuristics (zero external ML dependencies) so the
+Runs before/after every provider call and is used as standalone workflow nodes.
+All detection is regex + heuristics (zero external scoring dependencies) so the
 engine is fast, deterministic, and easy to audit.
 
 Design notes:
@@ -340,7 +340,7 @@ class SecurityEngine:
 
     Inject one instance per process onto ExecutionContext (or import the
     module-level `security_engine` singleton). All public methods are async
-    so the API can be uniform with future ML-backed implementations.
+    so the API can be uniform with future scoring implementations.
     """
 
     # ── PII ──────────────────────────────────────────────────────────────────

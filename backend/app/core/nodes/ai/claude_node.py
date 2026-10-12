@@ -37,7 +37,7 @@ logger = structlog.get_logger(__name__)
 # surface immediately rather than silently inserting empty strings.
 _jinja_env = Environment(
     undefined=StrictUndefined,
-    autoescape=False,           # outputs to LLM, not HTML
+    autoescape=False,           # outputs to provider, not HTML
     keep_trailing_newline=True,
 )
 

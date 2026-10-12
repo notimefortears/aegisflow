@@ -31,7 +31,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-text-primary">Dashboard</h1>
-          <p className="text-text-muted text-sm mt-0.5">Overview of your AI workflow automation</p>
+          <p className="text-text-muted text-sm mt-0.5">Overview of your workflow automation</p>
         </div>
         <button
           onClick={() => navigate('/workflows/new/edit')}
@@ -105,7 +105,7 @@ export default function Dashboard() {
             <div className="bg-surface border border-border rounded-xl p-8 text-center">
               <GitBranch size={32} className="text-text-muted mx-auto mb-3" />
               <p className="text-text-secondary text-sm font-medium mb-1">No workflows yet</p>
-              <p className="text-text-muted text-xs mb-4">Create your first AI automation workflow</p>
+              <p className="text-text-muted text-xs mb-4">Create your first automation workflow</p>
               <button
                 onClick={() => navigate('/workflows/new/edit')}
                 className="px-4 py-2 bg-primary hover:bg-primary-hover text-white text-sm rounded-lg transition-colors"

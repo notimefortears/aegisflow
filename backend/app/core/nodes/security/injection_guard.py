@@ -1,5 +1,5 @@
 """
-InjectionGuardNode — block prompt-injection content before it reaches an LLM.
+InjectionGuardNode — block prompt-injection content before it reaches a model endpoint.
 
 Config schema::
 

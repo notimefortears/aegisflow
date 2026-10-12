@@ -25,7 +25,7 @@ class NodeType(str, Enum):
     WEBHOOK = "webhook"
     SCHEDULE = "schedule"
     MANUAL = "manual"
-    # AI
+    # Providers
     CLAUDE = "claude"
     OPENAI = "openai"
     # Security

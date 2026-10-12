@@ -2,7 +2,7 @@
 
 export type NodeType =
   | 'webhook' | 'schedule' | 'manual'           // triggers
-  | 'claude' | 'openai'                          // AI
+  | 'claude' | 'openai'                          // Providers
   | 'pii_scanner' | 'injection_guard' | 'human_gate'  // security
   | 'http' | 'email' | 'database'               // integrations
   | 'condition' | 'transform' | 'merge';         // logic

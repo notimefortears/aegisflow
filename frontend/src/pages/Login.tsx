@@ -32,7 +32,7 @@ export default function Login() {
             <Shield size={28} className="text-white" />
           </div>
           <h1 className="text-2xl font-bold text-text-primary">AegisFlow</h1>
-          <p className="text-text-muted text-sm mt-1">AI Workflow Automation</p>
+          <p className="text-text-muted text-sm mt-1">Workflow Automation</p>
         </div>
 
         {/* Card */}
